@@ -7,6 +7,7 @@ namespace Products
             this.id = id;
             this.name = name;
             this.type = type;
+            this.nice = true;
             this.version = version;
         }
         public string type { get; set; }
@@ -16,5 +17,7 @@ namespace Products
         public string id { get; set; }
 
         public string version { get; set; }
+
+        public bool nice {get; set;}
     }
 }
