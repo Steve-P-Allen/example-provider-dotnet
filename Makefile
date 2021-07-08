@@ -26,6 +26,8 @@ build:
 
 ci: restore start test stop can_i_deploy $(DEPLOY_TARGET)
 
+tests: start test stop
+
 start: server.PID
 
 server.PID:

@@ -28,7 +28,7 @@ jobs:
       - name: Build
         run: make build 
       - name: Test
-        run: make test
+        run: make tests
 
   # # Runs on branches as well, so we know the status of our PRs
   # can-i-deploy:
