@@ -49,6 +49,7 @@ namespace tests
                 // Output verbose verification logs to the test output
                 Verbose = true,
                 PublishVerificationResults = true,
+                
                 ProviderVersion = System.Environment.GetEnvironmentVariable("TRAVIS_COMMIT")
 
             };
@@ -61,12 +62,15 @@ namespace tests
 
             if (pactUrl != "" && pactUrl != null) {
                 // Webhook path - verify the specific pact
-                pactVerifier.PactUri(pactUrl, new PactUriOptions(System.Environment.GetEnvironmentVariable("PACT_BROKER_TOKEN")));
+                pactVerifier.PactBroker(pactUrl, new PactUriOptions(System.Environment.GetEnvironmentVariable("PACT_BROKER_TOKEN")));
             } else {
                 // Standard verification path - run the
                 pactVerifier.PactBroker(System.Environment.GetEnvironmentVariable("PACT_BROKER_BASE_URL"),
                     uriOptions: new PactUriOptions(System.Environment.GetEnvironmentVariable("PACT_BROKER_TOKEN")),
-                    consumerVersionTags: new List<string> { "master", "prod" });
+                    providerVersionTags: !string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("TRAVIS_COMMIT")) ? new string[] { System.Environment.GetEnvironmentVariable("TRAVIS_BRANCH") } : new string[] {},
+                    consumerVersionSelectors: new List<VersionTagSelector> { new VersionTagSelector(tag: "master", latest: true), new VersionTagSelector(tag: "prod", latest: true)}
+                );
+                    //consumerVersionTags: new List<string> { "master", "prod" });
             }
 
             // Act / Assert

@@ -20,6 +20,10 @@ restore:
 	dotnet restore src
 	dotnet restore tests
 
+build:
+	dotnet build --configuration Release --no-restore src
+	dotnet build --no-restore tests
+
 ci: restore start test stop can_i_deploy $(DEPLOY_TARGET)
 
 start: server.PID
@@ -40,7 +44,8 @@ fake_ci: .env
 	make ci
 
 ci_webhook: .env
-	npm run test:pact
+#	npm run test:pact
+	make ci
 
 fake_ci_webhook:
 	CI=true \
@@ -54,7 +59,7 @@ fake_ci_webhook:
 ## =====================
 
 test: .env
-	dotnet test tests
+	dotnet test --no-restore --verbosity normal tests
 
 ## =====================
 ## Deploy tasks
