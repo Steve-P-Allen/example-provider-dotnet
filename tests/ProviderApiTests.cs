@@ -50,7 +50,6 @@ namespace tests
                 Verbose = true,
                 PublishVerificationResults = true,
                 ProviderVersion = System.Environment.GetEnvironmentVariable("TRAVIS_COMMIT")
-
             };
 
             var branch = System.Environment.GetEnvironmentVariable("TRAVIS_BRANCH").Replace("refs/heads/", string.Empty);
@@ -67,10 +66,10 @@ namespace tests
                 // Standard verification path - run the
                 pactVerifier.PactBroker(System.Environment.GetEnvironmentVariable("PACT_BROKER_BASE_URL"),
                     uriOptions: new PactUriOptions(System.Environment.GetEnvironmentVariable("PACT_BROKER_TOKEN")),
-                    providerVersionTags: !string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("TRAVIS_BRANCH")) ? new string[] { System.Environment.GetEnvironmentVariable("TRAVIS_BRANCH") } : new string[] {},
-                    consumerVersionSelectors: new List<VersionTagSelector> { new VersionTagSelector(tag: "master", latest: true), new VersionTagSelector(tag: "prod", latest: true)}
+                    providerVersionTags: !string.IsNullOrEmpty(branch) ? new string[] { branch } : new string[] {},
+                    consumerVersionSelectors: new List<VersionTagSelector> { new VersionTagSelector(tag: "master", latest: true), 
+                                                                             new VersionTagSelector(tag: "prod", latest: true)}
                 );
-                    //consumerVersionTags: new List<string> { "master", "prod" });
             }
 
             // Act / Assert
