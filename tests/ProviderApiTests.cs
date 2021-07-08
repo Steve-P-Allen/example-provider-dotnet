@@ -61,7 +61,7 @@ namespace tests
 
             if (pactUrl != "" && pactUrl != null) {
                 // Webhook path - verify the specific pact
-                pactVerifier.PactBroker(pactUrl, new PactUriOptions(System.Environment.GetEnvironmentVariable("PACT_BROKER_TOKEN")));
+                pactVerifier.PactUri(pactUrl, new PactUriOptions(System.Environment.GetEnvironmentVariable("PACT_BROKER_TOKEN")));
             } else {
                 // Standard verification path - run the
                 pactVerifier.PactBroker(System.Environment.GetEnvironmentVariable("PACT_BROKER_BASE_URL"),
