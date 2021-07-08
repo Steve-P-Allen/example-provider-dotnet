@@ -67,7 +67,7 @@ namespace tests
                 // Standard verification path - run the
                 pactVerifier.PactBroker(System.Environment.GetEnvironmentVariable("PACT_BROKER_BASE_URL"),
                     uriOptions: new PactUriOptions(System.Environment.GetEnvironmentVariable("PACT_BROKER_TOKEN")),
-                    providerVersionTags: !string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("TRAVIS_COMMIT")) ? new string[] { System.Environment.GetEnvironmentVariable("TRAVIS_BRANCH") } : new string[] {},
+                    providerVersionTags: !string.IsNullOrEmpty(System.Environment.GetEnvironmentVariable("TRAVIS_BRANCH")) ? new string[] { System.Environment.GetEnvironmentVariable("TRAVIS_BRANCH") } : new string[] {},
                     consumerVersionSelectors: new List<VersionTagSelector> { new VersionTagSelector(tag: "master", latest: true), new VersionTagSelector(tag: "prod", latest: true)}
                 );
                     //consumerVersionTags: new List<string> { "master", "prod" });
