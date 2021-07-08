@@ -65,7 +65,7 @@ fake_ci_webhook:
 ## Build/test tasks
 ## =====================
 
-test_no_webhook: .env
+test_non_webhook: .env
 	dotnet test tests
 
 ## =====================
