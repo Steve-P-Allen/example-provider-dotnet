@@ -14,21 +14,14 @@ env:
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        dotnet-version: ['3.1.x']
     steps:
       - uses: actions/checkout@v2
       - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
-        uses: actions/setup-dotnet@v1.7.2
+        uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: ${{ matrix.dotnet-version }}
-      - name: Install dependencies
-        run: make restore
-      - name: Build
-        run: make build 
+          dotnet-version: '3.x'
       - name: Test
-        run: make tests
+        run: make test
 
   # Runs on branches as well, so we know the status of our PRs
   can-i-deploy:

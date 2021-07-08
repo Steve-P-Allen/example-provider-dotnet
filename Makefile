@@ -26,7 +26,12 @@ build:
 
 ci: restore start test stop can_i_deploy $(DEPLOY_TARGET)
 
-tests: start test stop
+test: start test_non_webhook stop
+
+test_webhook: start test_pact stop
+
+test_pact:
+	dotnet test tests --filter FullyQualifiedName~Pact
 
 start: server.PID
 
@@ -60,8 +65,8 @@ fake_ci_webhook:
 ## Build/test tasks
 ## =====================
 
-test: .env
-	dotnet test --no-restore --verbosity normal tests
+test_no_webhook: .env
+	dotnet test tests
 
 ## =====================
 ## Deploy tasks
