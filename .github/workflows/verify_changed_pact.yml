@@ -9,8 +9,8 @@ env:
   PACT_BROKER_BASE_URL: https://viscountdefenestrateltd.pactflow.io/ 
   PACT_BROKER_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
   PACT_BROKER_PUBLISH_VERIFICATION_RESULTS: true
-  TRAVIS_COMMIT: ${{ github.sha }}
-  TRAVIS_BRANCH: ${{ github.ref }}
+  GITHUB_COMMIT: ${{ github.sha }}
+  GITHUB_BRANCH: ${{ github.ref }}
   PACT_URL: ${{ github.event.client_payload.pact_url }}
 
 jobs:
@@ -26,4 +26,4 @@ jobs:
       # - name: Install
       #   run: npm i
       - name: Verify
-        run: TRAVIS_BRANCH=${TRAVIS_BRANCH:11} make test_webhook 
+        run: GITHUB_BRANCH=${GITHUB_BRANCH:11} make test_webhook 

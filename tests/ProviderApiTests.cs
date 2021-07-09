@@ -49,10 +49,10 @@ namespace tests
                 // Output verbose verification logs to the test output
                 Verbose = true,
                 PublishVerificationResults = true,
-                ProviderVersion = System.Environment.GetEnvironmentVariable("TRAVIS_COMMIT")
+                ProviderVersion = System.Environment.GetEnvironmentVariable("GITHUB_COMMIT")
             };
 
-            var branch = System.Environment.GetEnvironmentVariable("TRAVIS_BRANCH").Replace("refs/heads/", string.Empty);
+            var branch = System.Environment.GetEnvironmentVariable("GITHUB_BRANCH").Replace("refs/heads/", string.Empty);
             IPactVerifier pactVerifier = new PactVerifier(config);
             string pactUrl = System.Environment.GetEnvironmentVariable("PACT_URL");
             pactVerifier

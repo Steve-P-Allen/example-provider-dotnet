@@ -41,7 +41,7 @@ stop: server.PID
 	kill `cat $<` && rm $<
 
 # Run the ci target from a developer machine with the environment variables
-# set as if it was on Travis CI.
+# set as if it was on GITHUB CI.
 # Use this for quick feedback when playing around with your workflows.
 fake_ci: .env
 	CI=true \
