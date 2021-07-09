@@ -4,7 +4,6 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using PactNet;
 using PactNet.Infrastructure.Outputters;
-using tests.XUnitHelpers;
 using Xunit;
 using Xunit.Abstractions;
 
