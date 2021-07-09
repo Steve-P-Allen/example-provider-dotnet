@@ -18,6 +18,6 @@ namespace Products
 
         public string version { get; set; }
 
-        public bool nice {get; set;}
+        //public bool nice {get; set;}
     }
 }
