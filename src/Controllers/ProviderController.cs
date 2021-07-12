@@ -11,14 +11,14 @@ namespace Products.Controllers
     public class ProductsController : Controller
     {
         private IConfiguration _Configuration { get; }
-        private ProductRepository _Repository;
+        private readonly IProductRepository _Repository;
 
         // This would usually be from a Repository/Data Store
 
-        public ProductsController(IConfiguration configuration)
+        public ProductsController(IConfiguration configuration, IProductRepository repository)
         {
             this._Configuration = configuration;
-            this._Repository = Products.ProductRepository.GetInstance();
+            this._Repository = repository;
         }
 
         [HttpGet]

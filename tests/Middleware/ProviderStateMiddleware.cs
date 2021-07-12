@@ -16,11 +16,12 @@ namespace tests.Middleware
         private const string ConsumerName = "Consumer";
         private readonly RequestDelegate _next;
         private readonly IDictionary<string, Action> _providerStates;
-        private ProductRepository _Repository;
+        private IProductRepository _Repository;
 
-        public ProviderStateMiddleware(RequestDelegate next)
+        public ProviderStateMiddleware(RequestDelegate next, IProductRepository repository)
         {
-            _Repository = ProductRepository.GetInstance();
+            _Repository = repository; 
+            // _Repository = ProductRepository.GetInstance();
             _next = next;
             _providerStates = new Dictionary<string, Action>
             {

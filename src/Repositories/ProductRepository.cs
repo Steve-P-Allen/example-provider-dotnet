@@ -3,26 +3,23 @@ using System.Collections.Generic;
 
 namespace Products
 {
-  public sealed class ProductRepository
+
+  public interface IProductRepository
   {
-      private static readonly ProductRepository _instance = new ProductRepository();
-      private List<Product> _products = new List<Product>();
+      void AddProduct(Product product);
+      void RemoveProducts();
+      List<Product> GetProducts();
+      Product GetProduct(string id);
+  }
 
-      // Explicit static constructor to tell C# compiler
-      // not to mark type as beforefieldinit
-      static ProductRepository()
-      {
-      }
+  public sealed class ProductRepository : IProductRepository
+  {
+      private readonly List<Product> _products = new List<Product>();
 
-      private ProductRepository()
+      public ProductRepository()
       {
         this._products.Add(new Product("1", "food", "pancake", "1.0.0"));
         this._products.Add(new Product("2", "food", "sanwhich", "1.0.0"));
-      }
-
-      public static ProductRepository GetInstance()
-      {
-        return _instance;
       }
 
       public void AddProduct(Product product) {
