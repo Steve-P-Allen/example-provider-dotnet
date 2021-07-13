@@ -3,7 +3,7 @@ namespace Products
 {
     public class Product
     {
-        public Product(string id, string type, string name, string version) {
+        public Product(int id, string type, string name, string version) {
             this.id = id;
             this.name = name;
             this.type = type;
@@ -14,7 +14,7 @@ namespace Products
 
         public string name { get; set; }
 
-        public string id { get; set; }
+        public int id { get; set; }
 
         public string version { get; set; }
 
