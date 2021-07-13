@@ -30,6 +30,10 @@ namespace tests.Middleware
                     AddData
                 },
                 {
+                    "several products exist",
+                    AddData
+                },
+                {
                     "no products exist",
                     RemoveAllData
                 }
