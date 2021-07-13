@@ -30,7 +30,7 @@ namespace Products.Controllers
 
         [HttpGet]
         [Route("/product/{id?}")]
-        public IActionResult GetSingle(string id)
+        public IActionResult GetSingle(int id)
         {
             var product = _Repository.GetProduct(id);
             if (product != null) {

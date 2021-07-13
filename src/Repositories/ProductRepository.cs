@@ -9,7 +9,7 @@ namespace Products
       void AddProduct(Product product);
       void RemoveProducts();
       List<Product> GetProducts();
-      Product GetProduct(string id);
+      Product GetProduct(int id);
   }
 
   public sealed class ProductRepository : IProductRepository
@@ -18,8 +18,8 @@ namespace Products
 
       public ProductRepository()
       {
-        this._products.Add(new Product("1", "food", "pancake", "1.0.0"));
-        this._products.Add(new Product("2", "food", "sanwhich", "1.0.0"));
+        this._products.Add(new Product(1, "food", "pancake", "1.0.0"));
+        this._products.Add(new Product(2, "food", "sanwhich", "1.0.0"));
       }
 
       public void AddProduct(Product product) {
@@ -34,7 +34,7 @@ namespace Products
         return _products;
       }
 
-      public Product GetProduct(string id) {
+      public Product GetProduct(int id) {
         return _products.Find(product => product.id == id);
       }
   }
